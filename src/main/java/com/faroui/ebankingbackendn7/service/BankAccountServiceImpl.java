@@ -220,8 +220,8 @@ public class BankAccountServiceImpl implements BankAccountService {
 
 	@Override
 	public void deleteCustomer(Long customerId) {
+		log.info("delete customer");
 		customerRepository.deleteById(customerId);
-		
 	}
 
 	@Override
