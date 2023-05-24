@@ -7,38 +7,15 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import com.faroui.ebankingbackendn7.enums.AccountStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("CA")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class CurrentAccount extends BankAccount {
 	
 	private double overDraft; //decouvert
-	
-	
-
-	public CurrentAccount(String id, double balance, Date createdAt, AccountStatus status, Customer customer,
-			List<AccountOperation> accountOperations, double overDraft) {
-		super(id, balance, createdAt, status, customer, accountOperations);
-		this.overDraft = overDraft;
-	}
-	public CurrentAccount() {
-		super();
-	}
-	public CurrentAccount(String id, double balance, Date createdAt, AccountStatus status, Customer customer,
-			List<AccountOperation> accountOperations) {
-		super(id, balance, createdAt, status, customer, accountOperations);
-	}
-
-
-	public double getOverDraft() {
-		return overDraft;
-	}
-
-	public void setOverDraft(double overDraft) {
-		this.overDraft = overDraft;
-	}
-	
-	
-	
 	
 }

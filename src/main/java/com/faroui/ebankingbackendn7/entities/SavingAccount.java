@@ -6,37 +6,13 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.faroui.ebankingbackendn7.enums.AccountStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("SA")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class SavingAccount extends BankAccount {
-	
 	private double interestRate; //taux d'interet
-
-	
-	
-	public SavingAccount(String id, double balance, Date createdAt, AccountStatus status, Customer customer,
-			List<AccountOperation> accountOperations, double interestRate) {
-		super(id, balance, createdAt, status, customer, accountOperations);
-		this.interestRate = interestRate;
-	}
-	public SavingAccount() {
-		super();
-		
-	}
-	public SavingAccount(String id, double balance, Date createdAt, AccountStatus status, Customer customer,
-			List<AccountOperation> accountOperations) {
-		super(id, balance, createdAt, status, customer, accountOperations);
-		
-	}
-
-	public double getInterestRate() {
-		return interestRate;
-	}
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
-	}
-	
-	
 }

@@ -21,7 +21,6 @@ import com.faroui.ebankingbackendn7.service.BankAccountService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/ebank/customer")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class CustomerRestController {
@@ -32,38 +31,34 @@ public class CustomerRestController {
 		this.bankAccountService = bankAccountService;
 	}
 	
-	@GetMapping("/list")
-	@ResponseBody
+	@GetMapping("/customers")
 	public List<CustomerDTO> customers(){
 		return bankAccountService.listCustomers();
 	}
 	
-	@GetMapping("/search")
-	@ResponseBody
+	@GetMapping("/customers/search")
 	public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword", defaultValue = "") String keyword){
 		return bankAccountService.searchCustomers("%"+keyword+"%");
 	}
 	
-	@GetMapping("/get/{id}")
-	@ResponseBody
+	@GetMapping("/customers/{id}")
 	public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
 		return bankAccountService.getCustomer(customerId);
 	}
 	
-	@PostMapping("/save")
-	@ResponseBody
+	@PostMapping("/customers")
 	public CustomerDTO saveCustomer(@RequestBody CustomerDTO request) {
 		return bankAccountService.saveCustomer(request);
 	}
 	
-	@PutMapping("/update/{customerId}")
+	@PutMapping("/customers/{customerId}")
 	@ResponseBody
 	public CustomerDTO updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDTO customerDTO) {
 		customerDTO.setId(customerId);
 		return bankAccountService.updateCustomer(customerDTO);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/customers/{id}")
 	public void deleteCustomer(@PathVariable Long id) {
 		bankAccountService.deleteCustomer(id);
 	}
