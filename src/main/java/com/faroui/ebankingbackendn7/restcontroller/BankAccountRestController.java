@@ -1,14 +1,12 @@
 package com.faroui.ebankingbackendn7.restcontroller;
 
 import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-
 import com.faroui.ebankingbackendn7.dto.AccountHistoryDTO;
 import com.faroui.ebankingbackendn7.dto.AccountOperationDTO;
 import com.faroui.ebankingbackendn7.dto.BankAccountDTO;
@@ -25,7 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @CrossOrigin(origins = "*")
 public class BankAccountRestController {
-	
 	private BankAccountService bankAccountService;
 
 	public BankAccountRestController(BankAccountService bankAccountService) {
@@ -41,14 +38,10 @@ public class BankAccountRestController {
 	public List<BankAccountDTO> listAccount()  {
 		return bankAccountService.listBankAccount();
 	}
-	
-	
 	@GetMapping("/accounts/{accountId}/operations")
 	public List<AccountOperationDTO> getHistorique(@PathVariable String accountId){
 		return bankAccountService.historique(accountId);
 	}
-	
-	
 	@GetMapping("/accounts/{accountId}/pageOperations")
 	public AccountHistoryDTO getAccountHistorique(
 			@PathVariable String accountId,
@@ -57,14 +50,12 @@ public class BankAccountRestController {
 		
 		return bankAccountService.getAccountHistory(accountId, page, size);
 	}
-	
 	@PostMapping("/accounts/debit")
 	@ResponseBody
 	public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
 		bankAccountService.debit(debitDTO.getAccountId(), debitDTO.getAmount(), debitDTO.getDescription());
 		return debitDTO;
 	}
-	
 	@PostMapping("/accounts/credit")
 	@ResponseBody
 	public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws BankAccountNotFoundException {
@@ -81,7 +72,6 @@ public class BankAccountRestController {
 				transferRequestDTO.getAccountDestination(),
 				transferRequestDTO.getAmount());
 	}
-	
 	@GetMapping("/accounts/{accountId}/pageAccounts")
 	public Page<BankAccountDTO> listAccounts( @RequestParam(name ="page", defaultValue = "0") int page,
 			@RequestParam(name ="size", defaultValue = "5") int size)  {
